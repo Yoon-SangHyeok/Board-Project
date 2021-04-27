@@ -1,0 +1,24 @@
+package com.spring.biz.common;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Service;
+
+@Service
+@Aspect // Aspect = PointCut + Advice
+
+public class LogAdvice {
+	
+	@Pointcut("execution(* com.spring.biz..*Impl.*(..))")
+	public void allPointCut() {} // 포인트컷 
+
+	@Pointcut("execution(* com.spring.biz..*Impl.get*(..))")
+	public void getPointCut() {}
+	
+	@Before("allPointCut()")
+	public void printLog(JoinPoint jp) {
+		System.out.println("[공통 로그] 비즈니스 로직 수행 전 동작"); // 어드바이스
+	}
+}
