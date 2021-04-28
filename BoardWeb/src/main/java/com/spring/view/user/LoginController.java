@@ -3,20 +3,22 @@ package com.spring.view.user;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
 import com.spring.biz.user.UserVO;
 import com.spring.biz.user.impl.UserDAO;
-import com.spring.view.controller.Controller;
 
 public class LoginController implements Controller{
 	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
 		
-		System.out.println("·Î±×ÀÎ Ã³¸®");
-		// 1. »ç¿ëÀÚ ÀÔ·Â Á¤º¸ ÃßÃâ
+		System.out.println("ë¡œê·¸ì¸ ì²˜ë¦¬");
+		// 1. ì‚¬ìš©ì ì…ë ¥ ì •ë³´ ì¶”ì¶œ
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 
-		// 2. DB ¿¬µ¿ Ã³¸®
+		// 2. DB ì—°ë™ ì²˜ë¦¬
 		UserVO vo = new UserVO();
 		vo.setId(id);
 		vo.setPassword(password);
@@ -24,11 +26,13 @@ public class LoginController implements Controller{
 		UserDAO userDAO = new UserDAO();
 		UserVO user = userDAO.getUser(vo);
 
-		// 3. È­¸é ³×ºñ°ÔÀÌ¼Ç
+		// 3. í™”ë©´ ë„¤ë¹„ê²Œì´ì…˜
+		ModelAndView mav = new ModelAndView();
 		if (user != null) {
-			return "getBoardList.do";
+			mav.setViewName("getBoardList.do");
 		} else {
-			return "login";
+			mav.setViewName("login.jsp");
 		}
+		return mav;
 	}
 }

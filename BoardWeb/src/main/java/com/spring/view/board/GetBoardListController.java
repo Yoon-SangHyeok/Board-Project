@@ -6,25 +6,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
 import com.spring.biz.board.BoardVO;
 import com.spring.biz.board.impl.BoardDAO;
-import com.spring.view.controller.Controller;
 
 public class GetBoardListController implements Controller{
 	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("±Û ¸ñ·Ï °Ë»ö Ã³¸®");
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("ê¸€ ëª©ë¡ ê²€ìƒ‰ ì²˜ë¦¬");
 
-		// 1. »ç¿ëÀÚ ÀÔ·Â Á¤º¸ ÃßÃâ(°Ë»ö ±â´ÉÀº ³ªÁß¿¡ ±¸Çö)
-		// 2. DB ¿¬µ¿ Ã³¸®
+		// 1. ì‚¬ìš©ì ì…ë ¥ ì •ë³´ ì¶”ì¶œ(ê²€ìƒ‰ ê¸°ëŠ¥ì€ ë‚˜ì¤‘ì— êµ¬í˜„)
+		// 2. DB ì—°ë™ ì²˜ë¦¬
 		BoardVO vo = new BoardVO();
 		BoardDAO boardDAO = new BoardDAO();
 		List<BoardVO> boardList = boardDAO.getBoardList(vo);
 		
-		// 3. °Ë»ö °á°ú¸¦ ¼¼¼Ç¿¡ ÀúÀåÇÏ°í ¸ñ·Ï È­¸éÀ» ¸®ÅÏ
-		HttpSession session = request.getSession();
-		session.setAttribute("boardList", boardList);
-		return "getBoardList";
+		// 3. ê²€ìƒ‰ ê²°ê³¼ì™€ í™”ë©´ ì •ë³´ë¥¼ ModelAndViewì— ì €ì¥í•˜ì—¬ ë¦¬í„´í•œë‹¤.
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("boardList", boardList); // Model ì •ë³´ ì €ì¥
+		mav.setViewName("getBoardList.jsp"); // View ì •ë³´ ì €ì¥
+		return mav;
 	}
 
 }

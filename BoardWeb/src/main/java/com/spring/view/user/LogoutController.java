@@ -4,19 +4,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.spring.view.controller.Controller;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
 
 public class LogoutController implements Controller{
 	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
 		
-		System.out.println("·Î±×¾Æ¿ô Ã³¸®");
+		System.out.println("ë¡œê·¸ì•„ì›ƒ ì²˜ë¦¬");
 		
-		// 1. ºê¶ó¿ìÀú¿Í ¿¬°áµÈ ¼¼¼Ç °´Ã¼¸¦ °­Á¦ Á¾·áÇÑ´Ù
+		// 1. ë¸Œë¼ìš°ì €ì™€ ì—°ê²°ëœ ì„¸ì…˜ ê°ì²´ë¥¼ ê°•ì œ ì¢…ë£Œí•œë‹¤.
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
-		// 2. ¼¼¼Ç Á¾·áÈÄ, ¸ŞÀÎ È­¸éÀ¸·Î ÀÌµ¿ÇÑ´Ù
-		return "login";
+		// 2. ì„¸ì…˜ ì¢…ë£Œ í›„, ë©”ì¸ í™”ë©´ìœ¼ë¡œ ì´ë™í•œë‹¤.
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("login.jsp");
+		return mav;
 	}
 }

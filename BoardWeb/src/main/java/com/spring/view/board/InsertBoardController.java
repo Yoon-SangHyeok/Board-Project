@@ -3,21 +3,23 @@ package com.spring.view.board;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
 import com.spring.biz.board.BoardVO;
 import com.spring.biz.board.impl.BoardDAO;
-import com.spring.view.controller.Controller;
 
 public class InsertBoardController implements Controller {
 	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("±Û µî·Ï Ã³¸®");
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("ê¸€ ë“±ë¡ ì²˜ë¦¬");
 
-		// 1. »ç¿ëÀÚ ÀÔ·Â Á¤º¸ ÃßÃâ
+		// 1. ì‚¬ìš©ì ì…ë ¥ ì •ë³´ ì¶”ì¶œ
 		String title = request.getParameter("title");
 		String writer = request.getParameter("writer");
 		String content = request.getParameter("content");
 
-		// 2. DB ¿¬µ¿ Ã³¸®
+		// 2. DB ì—°ë™ ì²˜ë¦¬
 		BoardVO vo = new BoardVO();
 		vo.setTitle(title);
 		vo.setWriter(writer);
@@ -26,7 +28,9 @@ public class InsertBoardController implements Controller {
 		BoardDAO boardDAO = new BoardDAO();
 		boardDAO.insertBoard(vo);
 
-		// 3. È­¸é ³×ºñ°ÔÀÌ¼Ç
-		return "getBoardList.do";
+		// 3. í™”ë©´ ë„¤ë¹„ê²Œì´ì…˜
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("getBoardList.do");
+		return mav;
 	}
 }

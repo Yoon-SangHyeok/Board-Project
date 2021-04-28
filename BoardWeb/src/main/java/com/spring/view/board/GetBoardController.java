@@ -4,29 +4,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
 import com.spring.biz.board.BoardVO;
 import com.spring.biz.board.impl.BoardDAO;
-import com.spring.view.controller.Controller;
 
 public class GetBoardController implements Controller {
 	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("±Û »ó¼¼ Á¶È¸ Ã³¸®");
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("ê¸€ ìƒì„¸ ì¡°íšŒ ì²˜ë¦¬");
 
-		// 1. °Ë»öÇÒ °Ô½Ã±Û ¹øÈ£ ÃßÃâ
+		// 1. ê²€ìƒ‰í•  ê²Œì‹œê¸€ ë²ˆí˜¸ ì¶”ì¶œ
 		String seq = request.getParameter("seq");
 
-		// 2. DB ¿¬µ¿ Ã³¸®
+		// 2. DB ì—°ë™ ì²˜ë¦¬
 		BoardVO vo = new BoardVO();
 		vo.setSeq(Integer.parseInt(seq));
 
 		BoardDAO boardDAO = new BoardDAO();
 		BoardVO board = boardDAO.getBoard(vo);
 
-		// 3. °Ë»ö °á°ú¸¦ ¼¼¼Ç¿¡ ÀúÀåÇÏ°í »ó¼¼ È­¸éÀ» ¸®ÅÏ
-		HttpSession session = request.getSession();
-		session.setAttribute("board", board);
-		return "getBoard";
-
+		// 3. ê²€ìƒ‰ ê²°ê³¼ì™€ í™”ë©´ ì •ë³´ë¥¼ ModelAndViewì— ì €ì¥í•˜ì—¬ ë¦¬í„´í•œë‹¤.
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("board", board);
+		mav.setViewName("getBoard.jsp");
+		return mav;
 	}
 }
