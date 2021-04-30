@@ -10,74 +10,42 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
-	<!-- 책의 코드는 />가 아니라 > 엔터 </context...> 임 -->
-	<context:component-scan
-		base-package="com.spring.biz"/>
-		
+	<context:component-scan base-package="com.spring.biz" />
+
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
-	<!-- Datasource 설정 추가 -->
-	<context:property-placeholder 
-		location="classpath:config/database.properties" />
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<!-- DataSource 설정 -->
+	<context:property-placeholder location="classpath:config/database.properties" />
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driver}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
-	
+
 	<!-- Spring JDBC 설정 -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="dataSource" />
 	</bean>
-
+	
 	<!-- Transaction 설정 -->
-	<bean id="txManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-
+	
 	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
-			<tx:method name="get*" read-only="true" />
-			<tx:method name="*" />
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="*"/>
 		</tx:attributes>
 	</tx:advice>
 	
-		<aop:config>
-		<aop:pointcut id="txPointcut"
-			expression="execution(* com.spring.biz..*(..))" />
+	<aop:config>
+		<aop:pointcut id="txPointcut"  expression="execution(* com.springbook.biz..*(..))"/>
+		
 		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
 	</aop:config>
 	
-
-	
-	
-	
-
-<!-- 
-	<bean id="log" class="com.spring.biz.common.LogAdvice"></bean>
-	<aop:config>
-		<aop:pointcut id="allPointcut"
-			expression="execution(* com.spring.biz..*Impl.*(..))" />
-		<aop:pointcut id="getPointcut"
-			expression="execution(* com.spring.biz..*Impl.get*(..))" />
-
-
-		<aop:aspect ref="log">
-			<aop:before pointcut-ref="allPointcut" method="printLog" />
-		</aop:aspect>
-	</aop:config>
-	 -->
-	<!-- 
-	<bean id="userService" class="com.spring.biz.user.impl.UserServiceImpl">
-		<property name="userDAO" ref="userDAO" />
-	</bean>
-
-	<bean id="userDAO" class="com.spring.biz.user.impl.UserDAO" />
-	-->
-
-
-
 </beans>

@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 public class LogAdvice {
 	
 	@Pointcut("execution(* com.spring.biz..*Impl.*(..))")
-	public void allPointCut() {} // Æ÷ÀÎÆ®ÄÆ 
+	public void allPointCut() {} // ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ 
 
-	@Pointcut("execution(* com.spring.biz..*Impl.get*(..))")
-	public void getPointCut() {}
+//	@Pointcut("execution(* com.spring.biz..*Impl.get*(..))")
+//	public void getPointCut() {}
 	
 	@Before("allPointCut()")
 	public void printLog(JoinPoint jp) {
-		System.out.println("[°øÅë ·Î±×] ºñÁî´Ï½º ·ÎÁ÷ ¼öÇà Àü µ¿ÀÛ"); // ¾îµå¹ÙÀÌ½º
+		System.out.println("[ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½] ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"); // ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½
 	}
 }

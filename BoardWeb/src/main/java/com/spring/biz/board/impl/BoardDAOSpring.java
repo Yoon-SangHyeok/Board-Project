@@ -11,52 +11,52 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.biz.board.BoardVO;
 
-@Repository("boardDAO")
+@Repository
 public class BoardDAOSpring {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	// SQL ¸í·É¾îµé
+	// SQL ï¿½ï¿½É¾ï¿½ï¿½
 	private final String BOARD_INSERT = "insert into board(seq, title, writer, content) values ((select nvl(max(seq), 0)+1 from board),?,?,?)";
 	private final String BOARD_UPDATE = "update board set title=?, content=? where seq=?";
 	private final String BOARD_DELETE = "delete board where seq=?";
 	private final String BOARD_GET = "select * from board where seq=?";
 	private final String BOARD_LIST = "select * from board order by seq desc";
 
-	// CRUD ±â´ÉÀÇ ¸Þ¼Òµå ±¸Çö
-	// ±Û µî·Ï
+	// CRUD ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½ ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½
 	
 	public void insertBoard(BoardVO vo) {
-		System.out.println("===> Spring JDBC·Î insertBoard() ±â´É Ã³¸®");
+		System.out.println("===> Spring JDBCï¿½ï¿½ insertBoard() ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½");
 		jdbcTemplate.update(BOARD_INSERT, vo.getTitle(), vo.getWriter(), vo.getContent());
 	}
 
-	// ±Û ¼öÁ¤
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 	public void updateBoard(BoardVO vo) {
-		System.out.println("===> Spring JDBC·Î updateBoard() ±â´É Ã³¸®");
+		System.out.println("===> Spring JDBCï¿½ï¿½ updateBoard() ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½");
 		jdbcTemplate.update(BOARD_UPDATE, vo.getTitle(), vo.getContent(), vo.getSeq());
 	}
 
-	// ±Û »èÁ¦
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 	public void deleteBoard(BoardVO vo) {
-		System.out.println("===> Spring JDBC·Î deleteBoard() ±â´É Ã³¸®");
+		System.out.println("===> Spring JDBCï¿½ï¿½ deleteBoard() ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½");
 		jdbcTemplate.update(BOARD_DELETE, vo.getSeq());
 	}
 
-	// ±Û »ó¼¼ Á¶È¸
+	// ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¸
 	
 	public BoardVO getBoard(BoardVO vo) {
-		System.out.println("==> Spring JDBC·Î getBoard() ±â´É Ã³¸®");
+		System.out.println("==> Spring JDBCï¿½ï¿½ getBoard() ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½");
 		Object[] args = {vo.getSeq()};
 		return jdbcTemplate.queryForObject(BOARD_GET, args, new BoardRowMapper());
 	}
 
-	// ±Û ¸ñ·Ï Á¶È¸
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
 	
 	public List<BoardVO> getBoardList(BoardVO vo) {
-		System.out.println("==> Spring JDBC·Î getBoardList() ±â´É Ã³¸®");
+		System.out.println("==> Spring JDBCï¿½ï¿½ getBoardList() ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½");
 		return jdbcTemplate.query(BOARD_LIST, new BoardRowMapper());
 	}
 }
