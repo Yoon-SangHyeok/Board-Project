@@ -19,10 +19,10 @@ public class AfterReturningAdvice {
 		if(returnObj instanceof UserVO) {
 			UserVO user = (UserVO) returnObj;
 			if(user.getRole().equals("Admin")) {
-				System.out.println(user.getName() + "·Î±×ÀÎ(Admin)");
+				System.out.println(user.getName() + "ï¿½Î±ï¿½ï¿½ï¿½(Admin)");
 			}
 		}
-		System.out.println("[»çÈÄ Ã³¸®]" + method + "() ¸Þ¼Òµå ¸®ÅÏ°ª :" + returnObj.toString());
+		System.out.println("[ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½]" + method + "() ï¿½Þ¼Òµï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ :" + returnObj.toString());
 	}
 
 }
