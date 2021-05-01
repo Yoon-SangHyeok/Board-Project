@@ -19,6 +19,6 @@ public class LogAdvice {
 	
 	@Before("allPointCut()")
 	public void printLog(JoinPoint jp) {
-		System.out.println("[���� �α�] ����Ͻ� ���� ���� �� ����"); // �����̽�
+		System.out.println("[공통 로그] 비즈니스 로직 수행 전 동작"); // �����̽�
 	}
 }
