@@ -11,7 +11,7 @@ public class BoardVO {
 	private String content;
 	private Date regDate;
 	private int cnt;
-	private String searchConditon;
+	private String searchCondition;
 	private String searchKeyword;
 	private MultipartFile uploadFile;
 
@@ -63,12 +63,12 @@ public class BoardVO {
 		this.cnt = cnt;
 	}
 
-	public String getSearchConditon() {
-		return searchConditon;
+	public String getSearchCondition() {
+		return searchCondition;
 	}
 
-	public void setSearchConditon(String searchConditon) {
-		this.searchConditon = searchConditon;
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
 	}
 
 	public String getSearchKeyword() {

@@ -60,7 +60,7 @@ public class BoardController {
 	
 	// 검색 조건 목록 설정
 	@ModelAttribute("conditionMap")
-	public Map<String, String> searchConditonMap(){
+	public Map<String, String> searchConditionMap(){
 		Map<String, String> conditionMap = new HashMap<String, String>();
 		conditionMap.put("제목", "TITLE");
 		conditionMap.put("내용", "CONTENT");
@@ -71,7 +71,7 @@ public class BoardController {
 	@RequestMapping("/getBoardList.do")	
 	public String getBoardList(BoardVO vo, Model model) {
 		// Null Check
-		if(vo.getSearchConditon() == null) vo.setSearchConditon("TITLE");
+		if(vo.getSearchCondition() == null) vo.setSearchCondition("TITLE");
 		if(vo.getSearchKeyword() == null) vo.setSearchKeyword("");
 		model.addAttribute("boardList", boardService.getBoardList(vo)); // Model 정보 저장
 		return "getBoardList.jsp"; // View 이름 리턴

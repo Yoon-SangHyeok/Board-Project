@@ -60,9 +60,9 @@ public class BoardDAOSpring {
 	public List<BoardVO> getBoardList(BoardVO vo) {
 		System.out.println("==> Spring JDBC로 getBoardList() 기능 처리");
 		Object[] args = { vo.getSearchKeyword() };
-		if (vo.getSearchConditon().equals("TITLE")) {
+		if (vo.getSearchCondition().equals("TITLE")) {
 			return jdbcTemplate.query(BOARD_LIST_T, args, new BoardRowMapper());
-		} else if (vo.getSearchConditon().equals("CONTENT")) {
+		} else if (vo.getSearchCondition().equals("CONTENT")) {
 			return jdbcTemplate.query(BOARD_LIST_C, args, new BoardRowMapper());
 		}
 		return null;
