@@ -24,7 +24,7 @@
 					<td align="left"><textarea name="content" cols="40" rows="10"></textarea></td>
 				</tr>
 				<tr>
-					<tb bgcolor="orange" width="70">업로드</tb><td align="left">
+					<td bgcolor="orange" width="70">업로드</td><td align="left">
 					<input type="file" name="uploadFile"/></td>
 				</tr>
 				<tr>
