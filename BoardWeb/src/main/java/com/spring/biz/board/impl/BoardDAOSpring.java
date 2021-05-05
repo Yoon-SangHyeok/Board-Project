@@ -1,12 +1,9 @@
 package com.spring.biz.board.impl;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.spring.biz.board.BoardVO;
@@ -66,18 +63,5 @@ public class BoardDAOSpring {
 			return jdbcTemplate.query(BOARD_LIST_C, args, new BoardRowMapper());
 		}
 		return null;
-	}
-
-	class BoardRowMapper implements RowMapper<BoardVO> {
-		public BoardVO mapRow(ResultSet rs, int rowNum) throws SQLException {
-			BoardVO board = new BoardVO();
-			board.setSeq(rs.getInt("SEQ"));
-			board.setTitle(rs.getString("TITLE"));
-			board.setWriter(rs.getString("WRITER"));
-			board.setContent(rs.getString("CONTENT"));
-			board.setRegDate(rs.getDate("REGDATE"));
-			board.setCnt(rs.getInt("CNT"));
-			return board;
-		}
 	}
 }

@@ -10,7 +10,7 @@
 		<h1>글 등록</h1>
 		<a href="logout.do">Log-out</a>
 		<hr>
-		<form action="insertBoard.do" method="post">
+		<form action="insertBoard.do" method="post" enctype="multipart/form-data">
 			<table border="1" cellpadding="0" cellspacing="0">
 				<tr>
 					<td bgcolor="orange" width="70">제목</td>
