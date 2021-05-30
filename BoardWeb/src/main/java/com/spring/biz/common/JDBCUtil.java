@@ -6,10 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class JDBCUtil {
+	
+    static final String DRIVER = "com.mysql.jdbc.Driver";
+    static final String URL = "jdbc:mysql://127.0.0.1:3307/board?useSSL=false";
+    static final String USERNAME = "root";
+    static final String PASSWORD = "password";
+    
 	public static Connection getConnection() {
 		try {
-			Class.forName("org.h2.Driver");
-			return DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "");
+			Class.forName(DRIVER);
+			return DriverManager.getConnection(URL, USERNAME, PASSWORD);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

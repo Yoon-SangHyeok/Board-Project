@@ -16,7 +16,7 @@
 	<insert id="insertBoard" parameterType="board">
 		<![CDATA[
 			INSERT INTO BOARD(SEQ, TITLE, WRITER, CONTENT)
-			VALUES((SELECT NVL(MAX(SEQ), 0)+1 FROM BOARD), #{title}, #{writer}, #{content})
+			VALUES((SELECT IFNULL(MAX(SEQ), 0)+1 FROM BOARD B), #{title}, #{writer}, #{content})
 		]]>
 
 	</insert>
@@ -29,7 +29,7 @@
 
 	<delete id="deleteBoard">
 		<![CDATA[
-			DELETE BOARD WHERE SEQ=#{seq}
+			DELETE FROM BOARD WHERE SEQ=#{seq}
 		]]>
 	</delete>
 
@@ -43,10 +43,10 @@
 	<select id="getBoardList" resultMap="boardResult">
 		SELECT * FROM BOARD WHERE 1 = 1
 		<if test="searchCondition == 'TITLE'">
-			AND TITLE LIKE '%'||#{searchKeyword}||'%'
+			AND TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
 		</if>
 		<if test="searchCondition == 'CONTENT'">
-			AND CONTENT LIKE '%'||#{searchKeyword}||'%'
+			AND CONTENT LIKE CONCAT('%', #{searchKeyword}, '%')
 		</if>
 		ORDER BY SEQ DESC
 	</select>
