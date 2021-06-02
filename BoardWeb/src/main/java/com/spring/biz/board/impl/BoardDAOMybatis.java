@@ -26,6 +26,11 @@ public class BoardDAOMybatis extends SqlSessionDaoSupport{
 		getSqlSession().update("BoardDAO.updateBoard", vo);
 	}
 	
+	public void updateCnt(BoardVO vo) {
+		System.out.println("===> Mybatis로 updateCnt() 기능 처리");		
+		getSqlSession().update("BoardDAO.updateCnt", vo);
+	}
+	
 	public void deleteBoard(BoardVO vo) {
 		System.out.println("===> Mybatis로 deleteBoard() 기능 처리");
 		getSqlSession().delete("BoardDAO.deleteBoard", vo);

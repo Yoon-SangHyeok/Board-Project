@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 public class JDBCUtil {
 	
     static final String DRIVER = "com.mysql.jdbc.Driver";
-    static final String URL = "jdbc:mysql://127.0.0.1:3307/board?useSSL=false";
+    static final String URL = "jdbc:mysql://127.0.0.1:3307/board?useSSL=false&allowMultiQueries=true";
     static final String USERNAME = "root";
     static final String PASSWORD = "password";
     
