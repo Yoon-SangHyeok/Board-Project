@@ -36,15 +36,15 @@
 
 <table border="1" cellpadding="0" cellspacing="0" width="700">
 <tr>
-	<th bgcolor="orange" width="100">
+	<th bgcolor="lightskyblue" width="100">
 	<spring:message code="message.board.list.table.head.seq"/></th>
-	<th bgcolor="orange" width="200">
+	<th bgcolor="lightskyblue" width="200">
 	<spring:message code="message.board.list.table.head.title"/></th>
-	<th bgcolor="orange" width="150">
+	<th bgcolor="lightskyblue" width="150">
 	<spring:message code="message.board.list.table.head.writer"/></th>
-	<th bgcolor="orange" width="150">
+	<th bgcolor="lightskyblue" width="150">
 	<spring:message code="message.board.list.table.head.regDate"/></th>
-	<th bgcolor="orange" width="100">
+	<th bgcolor="lightskyblue" width="100">
 	<spring:message code="message.board.list.table.head.cnt"/></th>
 </tr>
 
